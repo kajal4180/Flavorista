@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/index.css">
+
+<div class="container">
+    <h1 class="all-recipes-heading">Explore Our Delicious Recepies</h1>
+
+    <div class="row">
+        <% for (let i = 0; i < recepies.length; i++) {
+            let recepie = recepies[i];
+            if (i % 3 === 0) { %>
+                </div> 
+                <div class="row">
+            <% } %>
+            <div class="col-md-4">
+                <div class="card" onclick="location.href='/recepies/<%= recepie._id %>';">
+                    <img src="<%= recepie.images[0].url %>" class="card-img-top" alt="Receipe Image">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= recepie.title %></h5>
+                        <p class="card-text"><%= recepie.description %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div> 
+</div>

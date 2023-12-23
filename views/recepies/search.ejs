@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/show.css">
+<h1 class="all-recipes-heading">Search Results</h1>
+<div class="row">
+    <% if(recepie!=''){ %>
+        <% recepie.forEach(function(recepie,index){ %>
+          
+              <div class="card" mb-3>
+               <div class="row">
+                   <div class="col-md-4">
+                       <img class="img-fluid" alt="" src="<%= recepie.images[0].url%>">
+                   </div>
+                   <div class="col-md-8">
+                       <div class="card-body">
+                           <h5 class="card-title"><%= recepie.title %></h5>
+                           <p class="card-text"><%= recepie.description%></p>
+                            <p class="card-text">
+                               <small class="text-muted"><%= recepie.cookTime%></small>
+                           </p>
+                           <a class="btn btn-primary" href="/recepies/<%=recepie._id%>">View <%= recepie.title%></a>
+                        </div>
+
+                    </div>
+               </div>
+
+              </div>
+           
+           <%})%>
+           <% } else {%>
+              <p>No items found</p>
+            <% } %>
+</div>
