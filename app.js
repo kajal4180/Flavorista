@@ -2,6 +2,7 @@ if(process.env.NODE_ENV !=="production"){
     require('dotenv').config();
 }
 
+
 const express=require('express');
 const path=require('path');
 const mongoose=require('mongoose');
@@ -21,8 +22,11 @@ const recepieRoutes = require('./routes/recepies');
 const reviewRoutes = require('./routes/reviews');
 const { strict } = require('assert');
 
-
-mongoose.connect('mongodb://0.0.0.0:27017/flavorista',{
+const MongoDBStore=require("connect-mongo");
+// const dbUrl="mongodb+srv://kajal4180:Kajal%40123@cluster0.yeh4iup.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const dbUrl='mongodb://0.0.0.0:27017/flavorista';
+// 'mongodb://0.0.0.0:27017/flavorista'
+mongoose.connect(dbUrl,{
     useNewUrlParser: true,
     useUnifiedTopology:true,
 });
@@ -40,7 +44,17 @@ app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')));
+
+const store= MongoDBStore.create({
+    mongoUrl: dbUrl,
+    secret:'lsakldjkaj',
+    touchAfter:24*60*60
+});
+store.on("error",function(e){
+    console.log("SESSION STORE ERROR",e)
+})
 const sessionConfig={
+    store,
     secret:'lsakldjkaj',
     resave:false,
     saveUninitialized: true,
