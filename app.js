@@ -23,8 +23,8 @@ const reviewRoutes = require('./routes/reviews');
 const { strict } = require('assert');
 
 const MongoDBStore=require("connect-mongo");
-// const dbUrl="mongodb+srv://kajal4180:Kajal%40123@cluster0.yeh4iup.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const dbUrl='mongodb://0.0.0.0:27017/flavorista';
+const dbUrl="mongodb+srv://kajal4180:Kajal%40123@cluster0.yeh4iup.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// const dbUrl='mongodb://0.0.0.0:27017/flavorista';
 // 'mongodb://0.0.0.0:27017/flavorista'
 mongoose.connect(dbUrl,{
     useNewUrlParser: true,
